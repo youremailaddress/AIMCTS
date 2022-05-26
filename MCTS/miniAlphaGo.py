@@ -84,7 +84,11 @@ def runGame():
             pygame.display.update()
             a = time.time()
             tree = MTCSTree()
-            x,y = tree.decision(mainBoard, computerTile, 500)
+            nums = mainBoard.count(0)
+            if nums > 32:
+                x,y = tree.decision(mainBoard, computerTile, 500)
+            else:
+                x,y = tree.decision(mainBoard, computerTile, int(500+8*math.log((32-nums)*10+1)))
             b = time.time()
             lastcomptime = b-a
             makeMove(mainBoard, computerTile, x, y, True)
