@@ -77,7 +77,7 @@ class Board:
                     if not self.is_on_board(m, n):
                         break
                 if not self.is_on_board(m, n):
-                    break
+                    continue
                 if self._board[m][n] == color:
                     while True:
                         m -= xdirection
@@ -166,7 +166,7 @@ class MTCSTree():
          @description: 如果数据库有board，返回 n,reward0,reward1;如果没有，返回 false
          @return {*}
         '''
-        if board.count(0) < 32 or enhance == False:
+        if board.count(0) < 32:
             return False
         self.cursor.execute("select N,reward0,reward1 from data where serial=?",(hashlib.md5(board._board).hexdigest(),))
         m = self.cursor.fetchall()
